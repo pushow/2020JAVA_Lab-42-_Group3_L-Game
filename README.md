@@ -5,7 +5,7 @@
 <br>
 
 
-## <div id="about_team">Member/div>
+## <div id="about_team">
   
 ## Member
 - 박동민(Leader) <br>
@@ -13,12 +13,12 @@
 - 김훈태 <br>
 
 <br>
-## <div id="our_project">Project</div>
+<div id="our_project">
 
 ## Our Prject
 
 <br>
-## <div id="L-game">L-game</div>
+<div id="L-game">
 
 ## What is L-game?
 
