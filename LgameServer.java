@@ -12,10 +12,10 @@ public class LgameServer {
 		ServerSocket serversocket = null;
 		Scanner sc= new Scanner(System.in);
 		System.out.print("Input your nickname: ");
-		String serverplayer=sc.next();         //¼­¹öÃø »ç¿ëÀÚ¿Í Å¬¶óÀÌ¾ğÆ® Ãø »ç¿ëÀÚ ´Ğ³×ÀÓ                        
-		String clientplayer;
+		String serverplayer=sc.next();         //ì„œë²„ì¸¡ ì‚¬ìš©ì ë‹‰ë„¤ì„ ì…ë ¥                        
+		String clientplayer;                      //í´ë¼ì´ì–¸íŠ¸ ì¸¡ ì‚¬ìš©ì ë‹‰ë„¤ì„ ì €ì¥ 
 		 try {
-			 //¼­¹ö ¼ÒÄÏ ¼ÂÆÃ
+			 //ì„œë²„ ì†Œì¼“ ì…‹íŒ…
 			 serversocket = new ServerSocket();
 
 	         InetAddress inetAddress = InetAddress.getLocalHost();
@@ -30,23 +30,23 @@ public class LgameServer {
 	         System.out.println("=====================================");
 	         
 	         
-	         //Å¬¶óÀÌ¾ğÆ® Á¢¼Ó ´ë±â
+	         //í´ë¼ì´ì–¸íŠ¸ ì ‘ì† ëŒ€ê¸°
 	         Socket socket = serversocket.accept();
 	 
 	         OutputStream os = socket.getOutputStream();
-	         DataOutputStream dous = new DataOutputStream(os);   //µ¥ÀÌÅÍ º¸³»´Â ½ºÆ®¸²
+	         DataOutputStream dous = new DataOutputStream(os);   //ë°ì´í„° ë³´ë‚´ëŠ” ìŠ¤íŠ¸ë¦¼
 	         
 	         InputStream ins = socket.getInputStream();
-	         DataInputStream dins = new DataInputStream(ins);    //µ¥ÀÌÅÍ ÀĞ¾î¿À´Â ½ºÆ®¸²
-	         clientplayer= dins.readUTF();                    // Å¬¶óÀÌ¾ğÆ® ´Ğ³×ÀÓ ÀĞ¾î¿À±â
+	         DataInputStream dins = new DataInputStream(ins);    //ë°ì´í„° ì½ì–´ì˜¤ëŠ” ìŠ¤íŠ¸ë¦¼
+	         clientplayer= dins.readUTF();                    // í´ë¼ì´ì–¸íŠ¸ ë‹‰ë„¤ì„ ì½ì–´ì˜¤ê¸°
 	         System.out.println("Client connected!");
-	         System.out.println("Client ip: "+socket.getInetAddress());    //Å¬¶óÀÌ¾ğÆ®ÀÇ ipÁÖ¼Ò   
+	         System.out.println("Client ip: "+socket.getInetAddress());    //í´ë¼ì´ì–¸íŠ¸ì˜ ipì£¼ì†Œ   
 	         System.out.println("Client nickname: "+clientplayer);
-	         dous.writeUTF(serverplayer);   //¼­¹ö ´Ğ³×ÀÓ Å¬¶óÀÌ¾ğÆ®¿¡ º¸³»±â
-	         int order = DesideOrder();      //¼ø¼­¸¦ Á¤ÇÏ±â 0,1 Áß ·£´ıÀ¸·Î °áÁ¤µÊ
-	         dous.writeInt(order);           //¼ø¼­ °á°ú¸¦ Å¬¶óÀÌ¾ğÆ®¿¡ º¸³¿(0¶Ç´Â 1)
+	         dous.writeUTF(serverplayer);   //ì„œë²„ ë‹‰ë„¤ì„ í´ë¼ì´ì–¸íŠ¸ì— ë³´ë‚´ê¸°
+	         int order = DesideOrder();      //ìˆœì„œë¥¼ ì •í•˜ê¸° 0,1 ì¤‘ ëœë¤ìœ¼ë¡œ ê²°ì •ë¨
+	         dous.writeInt(order);           //ìˆœì„œ ê²°ê³¼ë¥¼ í´ë¼ì´ì–¸íŠ¸ì— ë³´ëƒ„(0ë˜ëŠ” 1)
 	         
-	         if(order==0) {                                  //¼ø¼­°á°ú°¡ 0¾Ö¸é ¼­¹ö ¸ÕÀú ½ÃÀÛ
+	         if(order==0) {                                  //ìˆœì„œê²°ê³¼ê°€ 0ì• ë©´ ì„œë²„ ë¨¼ì € ì‹œì‘
 	        	 System.out.println("You first!");
 	         }
 	         else {
@@ -55,11 +55,11 @@ public class LgameServer {
 	         
 	         
 	         /*
-				 * ¿©±â¿¡ GUI¿Í °ÔÀÓ ½ÇÇà
-				 */
+		  * ì—¬ê¸°ì— GUIì™€ ê²Œì„ ì‹¤í–‰
+		  */
 	         
 	         
-	         System.out.println("The end(ÀÏ´Ü ¿©±â±îÁö)");  //ÀÏ´Ü ¿©±â±îÁö
+	         System.out.println("The end(ì¼ë‹¨ ì—¬ê¸°ê¹Œì§€)");  //ì¼ë‹¨ ì—¬ê¸°ê¹Œì§€
 	         
 	         dins.close();
 	         dous.close();
@@ -80,14 +80,3 @@ public class LgameServer {
 
 }
 
-/*Room Å¬·¡½º 
- * ÇÑ »ç¿ëÀÚ°¡ ¹æÀ» °³¼³ÇÏ°í ´Ù¸¥ ÇÑ »ç¿ëÀÚ°¡ µé¾î¿À¸é ÇÃ·¹ÀÌ ÇÒ ¼ö ÀÖÀ½
- * ¹æÀÇ Á¤º¸¸¦ ÀúÀåÇÏ´Â Å¬·¡½º
- * ¸ğµç °ÔÀÓÀº µÎ ¸íÀÌ ¹æÀ» ÀÔÀåÇØ¾ß ¸¸ ÇÒ ¼ö ÀÖÀ½
- * 1. ¹æ ¸¸µå´Â »ç¶÷ : ¹æ ÀÌ¸§°ú ºñ¹øÀ» ¼³Á¤
- * 2. µé¾î¿À´Â »ç¶÷ : ¹æ ÀÌ¸§À» Å¬¸¯ÇÏ°í ºñ¹øÀ» ÀÔ·Â 
- *  
- */
-class Room{
-	String title; //¹æ Á¦¸ñ
-}
